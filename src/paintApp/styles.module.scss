@@ -1,0 +1,46 @@
+*,
+::before,
+::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+
+    .main {
+        width: 100%;
+        max-width: 1440px;
+
+        .heading {
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .menuContainer {
+            margin-top: 30px;
+            display: flex;
+            gap: 30px;
+
+            .brushColor {
+                width: 300px;
+            }
+
+            .brushWidthContainer,
+            .brushOpacityContainer {
+                width: 100%;
+            }
+        }
+
+        .canvas {
+            margin-top: 30px;
+            width: 100%;
+            height: 400px;
+            box-shadow: 0px 1px 3px gray inset;
+        }
+    }
+}
