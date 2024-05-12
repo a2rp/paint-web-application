@@ -34,6 +34,21 @@
             .brushOpacityContainer {
                 width: 100%;
             }
+
+            .clearButton {
+                width: 250px;
+            }
+
+            @media only screen and (width<600px) {
+                flex-wrap: wrap;
+
+                .brushColor,
+                .brushWidthContainer,
+                .brushOpacityContainer,
+                .clearButton {
+                    width: 100%;
+                }
+            }
         }
 
         .canvas {

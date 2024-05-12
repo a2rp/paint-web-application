@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
-import { Slider, TextField, Typography } from "@mui/material";
+import { Button, Slider, TextField, Typography } from "@mui/material";
 
 const PaintApp = () => {
     const canvasRef = useRef(null);
@@ -94,6 +94,13 @@ const PaintApp = () => {
         contextRef.current.stroke();
     };
 
+    const clearCanvas = () => {
+        const canvas = canvasRef.current;
+        const context = canvas.getContext("2d");
+        // contextRef.current = context;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.main}>
@@ -142,6 +149,12 @@ const PaintApp = () => {
                             onChange={handleBrushOpacityChange}
                         />
                     </div>
+
+                    <Button
+                        onClick={clearCanvas}
+                        variant="contained"
+                        className={styles.clearButton}
+                    >Clear</Button>
                 </div>
 
                 <canvas
