@@ -1,5 +1,5 @@
 
-![image](https://github.com/a2rp/paint-web-application/assets/5670738/a4405b7b-c4c0-4deb-8d50-3f2bed1a812c)
+![image](https://github.com/a2rp/paint-web-application/assets/5670738/035685a5-55b9-4448-80e5-a982c01603f2)
 
 
 # Getting Started with Create React App
