@@ -101,6 +101,15 @@ const PaintApp = () => {
         context.clearRect(0, 0, canvas.width, canvas.height);
     };
 
+    const saveAsImage = () => {
+        let canvas = canvasRef.current;
+        let url = canvas.toDataURL("image/png");
+        let link = document.createElement("a");
+        link.download = "canvas-image.png";
+        link.href = url;
+        link.click();
+    };
+
     return (
         <div className={styles.container}>
             <div className={styles.main}>
@@ -155,6 +164,12 @@ const PaintApp = () => {
                         variant="contained"
                         className={styles.clearButton}
                     >Clear</Button>
+
+                    <Button
+                        onClick={saveAsImage}
+                        variant="contained"
+                        className={styles.saveAsImage}
+                    >Save</Button>
                 </div>
 
                 <canvas

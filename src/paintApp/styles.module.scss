@@ -35,7 +35,8 @@
                 width: 100%;
             }
 
-            .clearButton {
+            .clearButton,
+            .saveAsImage {
                 width: 250px;
             }
 
@@ -45,7 +46,8 @@
                 .brushColor,
                 .brushWidthContainer,
                 .brushOpacityContainer,
-                .clearButton {
+                .clearButton,
+                .saveAsImage {
                     width: 100%;
                 }
             }
