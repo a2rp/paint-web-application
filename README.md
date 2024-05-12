@@ -1,3 +1,7 @@
+
+![image](https://github.com/a2rp/paint-web-application/assets/5670738/a4405b7b-c4c0-4deb-8d50-3f2bed1a812c)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
