@@ -1,63 +1,314 @@
-*,
-::before,
-::after {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+.container {
+    min-height: 100vh;
+    overflow-y: auto;
+    color: #e9eef5;
+    background: #07101c;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    width: 100%;
+    border-bottom: 1px solid #1e3448;
+    background: rgba(7, 16, 28, .96);
+    backdrop-filter: blur(12px);
+}
+
+.headerInner,
+.main,
+.footer {
+    width: min(1180px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+.headerInner {
+    display: flex;
+    min-height: 68px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #f7fbff;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.brand img,
+.footerIntro img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.headerHint {
+    color: #8da0b5;
     font-size: 12px;
 }
 
-.container {
+.main {
+    padding: 112px 0 46px;
+}
+
+.headingBlock {
+    max-width: 720px;
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    margin-bottom: 8px;
+    color: #70b7ff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+}
+
+.headingBlock h1 {
+    margin-bottom: 12px;
+    color: #f7fbff;
+    font-size: clamp(34px, 6vw, 64px);
+    line-height: 1;
+}
+
+.headingBlock p:last-child {
+    max-width: 580px;
+    color: #9aadc1;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.workspace {
+    padding: 18px;
+    background: #0b1929;
+    border: 1px solid #1e3d5a;
+    border-radius: 18px;
+    box-shadow: 0 20px 55px rgba(0, 0, 0, .25);
+}
+
+.menuContainer {
+    display: grid;
+    grid-template-columns: minmax(150px, 180px) minmax(180px, 1fr) minmax(180px, 1fr) auto;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.brushColor {
+    min-width: 0;
+}
+
+.sliderContainer {
+    min-width: 0;
+    padding: 0 6px;
+    color: #d7e5f2;
+}
+
+.sliderContainer p {
+    margin-bottom: 4px;
+    color: #9aadc1;
+    font-size: 12px;
+}
+
+.sliderContainer :global(.MuiSlider-root) {
+    color: #70b7ff;
+}
+
+.actions {
     display: flex;
-    justify-content: center;
-    padding: 30px;
+    gap: 10px;
+}
+
+.actions button {
+    min-width: 100px;
+    border-radius: 9px;
+    transition: border-color .18s ease, box-shadow .18s ease, color .18s ease;
+}
+
+.actions button:hover {
+    border-color: #70b7ff;
+    box-shadow: 0 0 14px rgba(112, 183, 255, .18);
+}
+
+.canvasFrame {
+    padding: 8px;
+    background: #14283d;
+    border: 1px solid #234562;
+    border-radius: 14px;
+}
+
+.canvas {
+    display: block;
+    width: 100%;
+    height: 480px;
+    background: #fff;
+    border-radius: 8px;
+    cursor: crosshair;
+    touch-action: none;
+}
+
+.footer {
+    display: grid;
+    gap: 16px;
+    padding: 24px 0 30px;
+    border-top: 1px solid #1e3448;
+    color: #8295a9;
+    font-size: 12px;
+}
+
+.footerIntro,
+.footerGroups,
+.footerBottom {
+    display: flex;
+    align-items: center;
+}
+
+.footerIntro {
+    gap: 10px;
+}
+
+.footerIntro div {
+    display: grid;
+    gap: 2px;
+}
+
+.footerIntro strong,
+.footerGroups > div > span {
+    color: #e7f0f8;
+}
+
+.footerIntro span {
+    color: #8295a9;
+}
+
+.footerGroups {
+    flex-wrap: wrap;
+    gap: 28px;
+}
+
+.footerGroups > div {
+    display: grid;
+    gap: 8px;
+}
+
+.footerGroups > div > span {
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.iconLinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.iconLinks a {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    color: #8295a9;
+    border: 1px solid #29445d;
+    border-radius: 8px;
+    transition: color .18s ease, border-color .18s ease, text-shadow .18s ease, box-shadow .18s ease;
+}
+
+.iconLinks a:hover {
+    color: #fff;
+    border-color: #70b7ff;
+    text-shadow: 0 0 10px rgba(112, 183, 255, .4);
+    box-shadow: 0 0 14px rgba(112, 183, 255, .14);
+}
+
+.footerBottom {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 14px;
+    border-top: 1px solid #1e3448;
+}
+
+.footerBottom a {
+    color: #b5c8da;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.goTop {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 30;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    color: #07101c;
+    background: #70b7ff;
+    border: 1px solid #b9ddff;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+
+.goTopVisible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.goTop:hover {
+    border-color: #fff;
+    box-shadow: 0 0 18px rgba(112, 183, 255, .35);
+}
+
+@media (max-width: 900px) {
+    .menuContainer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .actions {
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 600px) {
+    .headerInner,
+    .main,
+    .footer {
+        width: min(100% - 24px, 1180px);
+    }
+
+    .headerHint {
+        display: none;
+    }
 
     .main {
-        width: 100%;
-        max-width: 1440px;
+        padding-top: 98px;
+    }
 
-        .heading {
-            font-size: 20px;
-            font-weight: 900;
-        }
+    .workspace {
+        padding: 12px;
+    }
 
-        .menuContainer {
-            margin-top: 30px;
-            display: flex;
-            gap: 30px;
+    .menuContainer {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
 
-            .brushColor {
-                width: 300px;
-            }
+    .actions button {
+        flex: 1;
+    }
 
-            .brushWidthContainer,
-            .brushOpacityContainer {
-                width: 100%;
-            }
-
-            .clearButton,
-            .saveAsImage {
-                width: 250px;
-            }
-
-            @media only screen and (width<600px) {
-                flex-wrap: wrap;
-
-                .brushColor,
-                .brushWidthContainer,
-                .brushOpacityContainer,
-                .clearButton,
-                .saveAsImage {
-                    width: 100%;
-                }
-            }
-        }
-
-        .canvas {
-            margin-top: 30px;
-            width: 100%;
-            height: 400px;
-            box-shadow: 0px 1px 3px gray inset;
-        }
+    .canvas {
+        height: 360px;
     }
 }
