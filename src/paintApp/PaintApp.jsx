@@ -1,4 +1,4 @@
-import React, { createElement, useEffect, useRef, useState } from "react";
+import { createElement, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { Button, Slider, TextField, Typography } from "@mui/material";
 import { FaCodepen } from "react-icons/fa";
@@ -36,8 +36,8 @@ function Header() {
     return (
         <header className={styles.header}>
             <div className={styles.headerInner}>
-                <a className={styles.brand} href="/paint-web-application/" aria-label="Paint application home">
-                    <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Ashish Ranjan logo" />
+                <a className={styles.brand} href={import.meta.env.BASE_URL} aria-label="Paint application home">
+                    <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Ashish Ranjan logo" />
                     <span>Paint Studio</span>
                 </a>
                 <span className={styles.headerHint}>Draw, clear and save your canvas</span>
@@ -50,7 +50,7 @@ function Footer() {
     return (
         <footer className={styles.footer}>
             <div className={styles.footerIntro}>
-                <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Ashish Ranjan logo" />
+                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Ashish Ranjan logo" />
                 <div><strong>Paint Studio</strong><span>A lightweight browser canvas</span></div>
             </div>
             <div className={styles.footerGroups}>
@@ -92,6 +92,7 @@ const PaintApp = () => {
     const [brushColor, setBrushColor] = useState("#000000");
     const [brushWidth, setBrushWidth] = useState(5);
     const [brushOpacity, setBrushOpacity] = useState(0.1);
+    const brushSettingsRef = useRef({ color: brushColor, width: brushWidth, opacity: brushOpacity });
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -99,13 +100,24 @@ const PaintApp = () => {
         const resizeCanvas = () => {
             const rect = canvas.getBoundingClientRect();
             const ratio = window.devicePixelRatio || 1;
+            const previousCanvas = document.createElement("canvas");
+            previousCanvas.width = canvas.width;
+            previousCanvas.height = canvas.height;
+            previousCanvas.getContext("2d")?.drawImage(canvas, 0, 0);
             canvas.width = Math.max(1, Math.floor(rect.width * ratio));
             canvas.height = Math.max(1, Math.floor(rect.height * ratio));
             const context = canvas.getContext("2d");
+            if (!context) return;
             context.setTransform(ratio, 0, 0, ratio, 0, 0);
             context.lineCap = "round";
             context.lineJoin = "round";
+            context.drawImage(previousCanvas, 0, 0, previousCanvas.width, previousCanvas.height, 0, 0, rect.width, rect.height);
+            const { color, width, opacity } = brushSettingsRef.current;
+            context.globalAlpha = opacity;
+            context.strokeStyle = color;
+            context.lineWidth = width;
             contextRef.current = context;
+            isDrawingRef.current = false;
         };
         resizeCanvas();
         window.addEventListener("resize", resizeCanvas);
@@ -113,6 +125,7 @@ const PaintApp = () => {
     }, []);
 
     useEffect(() => {
+        brushSettingsRef.current = { color: brushColor, width: brushWidth, opacity: brushOpacity };
         const context = contextRef.current;
         if (!context) return;
         context.globalAlpha = brushOpacity;
@@ -158,9 +171,17 @@ const PaintApp = () => {
     const saveAsImage = () => {
         const canvas = canvasRef.current;
         if (!canvas) return;
+        const exportCanvas = document.createElement("canvas");
+        exportCanvas.width = canvas.width;
+        exportCanvas.height = canvas.height;
+        const exportContext = exportCanvas.getContext("2d");
+        if (!exportContext) return;
+        exportContext.fillStyle = "#ffffff";
+        exportContext.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+        exportContext.drawImage(canvas, 0, 0);
         const link = document.createElement("a");
         link.download = "paint-studio-canvas.png";
-        link.href = canvas.toDataURL("image/png");
+        link.href = exportCanvas.toDataURL("image/png");
         link.click();
     };
 

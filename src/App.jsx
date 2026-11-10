@@ -1,4 +1,3 @@
-import React from 'react'
 import PaintApp from './paintApp'
 
 const App = () => {

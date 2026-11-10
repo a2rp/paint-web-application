@@ -14,12 +14,14 @@ A lightweight React canvas app for drawing quick sketches, adjusting brush setti
 
 ## Tech stack
 
-React, Create React App, Sass, MUI and React Icons.
+React, Vite, Sass, MUI and React Icons.
 
 ## Run locally
 
+Requires Node.js 20.19+ or 22.12+. Run these commands from this directory:
+
 ```bash
-npm install
+npm ci
 npm start
 ```
 
@@ -29,6 +31,8 @@ npm start
 npm run build
 npm run deploy
 ```
+
+The deploy script publishes the Vite `dist` directory to the `gh-pages` branch. Vite uses `/paint-web-application/` as the project-page base path.
 
 Live site: [Paint Studio](https://a2rp.github.io/paint-web-application/)
 
